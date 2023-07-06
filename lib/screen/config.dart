@@ -1,0 +1,1 @@
+ final Uri boissonsURL = Uri.https("image_boissons", "/Boissons.json");

@@ -2,7 +2,8 @@
 
 
 
-![Image](./assets/img/Capture%20d%E2%80%99%C3%A9cran%202023-07-05%20%C3%A0%2016.47.51.png "Starbucks")
+![Image](./img/MonPrototypeFigma.png "Figma")
+
 
 
 
