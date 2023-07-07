@@ -1,1 +1,4 @@
- final Uri boissonsURL = Uri.https("image_boissons", "/Boissons.json");
+ final Uri boissonsURL = Uri.https("freshdrinks.alwaysdata.net/", "/Boissons.json");
+ final Uri categoriesURL = Uri.https("freshdrinks.alwaysdata.net/", "/Categories.json");
+
+

@@ -1,134 +1,62 @@
+// Gère
+
+// screen/device.dart
 
 import 'package:flutter/material.dart';
-import 'home.dart';
+import 'package:flutter_application/screen/nouveaute.dart';
+import 'package:flutter_application/screen/home.dart';
 
 
-
-class MyHomePage extends StatelessWidget{
-
+class DeviceScreen extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Scaffold(
-        body: HomeScreen(),
-        bottomNavigationBar: BottomNavBarFb3(),
-      ),
-    );
-  }
+  // Appel a la creation de l'état
+  _DeviceScreenState createState() => _DeviceScreenState();
 }
 
-class BottomNavBarFb3 extends StatelessWidget {
-  const BottomNavBarFb3({Key? key}) : super(key: key);
+class _DeviceScreenState extends State<DeviceScreen> {
+  //
+  int _currentScreen = 0;
 
-  final primaryColor = const Color(0xff53E88B);
-  final secondaryColor = const Color(0xff53E88B);
-  final accentColor = const Color(0xffffffff);
-  final backgroundColor = const Color(0xffffffff);
-  final errorColor = const Color(0xffEF4444);
+  // Liste des écrans
+  final List<Widget> _screenList = [
+    HomeScreen(),
+    AboutPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return BottomAppBar(
-      color: Colors.white,
-      child: SizedBox(
-        height: 56,
-        width: MediaQuery.of(context).size.width,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 25.0, right: 25.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconBottomBar2(
-                  text: "Home",
-                  icon: Icons.home,
-                  selected: true,
-                  onPressed: () {}),
-              const Spacer(),
-              IconBottomBar(
-                  text: "Menu",
-                  icon: Icons.menu_book,
-                  selected: false,
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/second');
-                  }),
-              IconBottomBar(
-                  text: "Bag",
-                  icon: Icons.shopping_bag,
-                  selected: false,
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/third');
-                  }),
-              IconBottomBar(
-                  text: "Store",
-                  icon: Icons.store,
-                  selected: false,
-                  onPressed: () {})
-            ],
-          ),
-        ),
-      ),
+    return Scaffold(
+      
+      body: _screenList[
+          _currentScreen], //Pour montrer la page quand je serai à son numéro
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.amber,
+        iconSize: 25,
+        fixedColor: Colors.black,
+        unselectedItemColor: Colors.white,
+        type: BottomNavigationBarType.fixed,
+          // Options de présentation
+
+
+          // L'index
+          currentIndex: _currentScreen,
+          // L'écouteur : Ce passe quelque chose à une action
+          onTap: onTabTapped,
+
+          // Liste de bouton
+          items: const [
+            //
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Accueil"),
+            BottomNavigationBarItem(icon: Icon(Icons.article), label: "Nouveauté"),
+
+
+          ]),
     );
   }
-}
 
-class IconBottomBar extends StatelessWidget {
-  const IconBottomBar(
-      {Key? key,
-        required this.text,
-        required this.icon,
-        required this.selected,
-        required this.onPressed})
-      : super(key: key);
-  final String text;
-  final IconData icon;
-  final bool selected;
-  final Function() onPressed;
-
-  final primaryColor = const Color(0xff53E88B);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        IconButton(
-          onPressed: onPressed,
-          icon: Icon(
-            icon,
-            size: 25,
-            color: selected ? primaryColor : Colors.black54,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class IconBottomBar2 extends StatelessWidget {
-  const IconBottomBar2(
-      {Key? key,
-        required this.text,
-        required this.icon,
-        required this.selected,
-        required this.onPressed})
-      : super(key: key);
-  final String text;
-  final IconData icon;
-  final bool selected;
-  final Function() onPressed;
-  final primaryColor = const Color(0xff53E88B);
-  @override
-  Widget build(BuildContext context) {
-    return CircleAvatar(
-      backgroundColor: primaryColor,
-      child: IconButton(
-        onPressed: onPressed,
-        icon: Icon(
-          icon,
-          size: 25,
-          color: Colors.white,
-        ),
-      ),
-    );
+  void onTabTapped(int index) {
+    setState(() {
+      _currentScreen = index;
+    });
   }
 }

@@ -1,13 +1,7 @@
-////////////////////////////////////////////////
-//     Instagram: @invisionchip
-//     Github: chipinvision
-//     LIKE  -  FOLLOW  -  SHARE
-////////////////////////////////////////////////
 
 import 'package:flutter/material.dart';
-
-
 import 'screen/device.dart';
+
 
 
 void main() {
@@ -28,7 +22,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
   
-      home: MyHomePage(),
+      home: DeviceScreen(),
     );
   }
 }
